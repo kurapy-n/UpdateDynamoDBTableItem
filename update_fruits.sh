@@ -14,10 +14,10 @@ table_name="Fruits"
 get_item=$(aws dynamodb get-item \
   --table-name ${table_name} \
   --key "{\"name\":{\"S\": \"${name}\"}}" | \
-  jq -r '.Item | "name: " + .name.S 
-  + "\namount: " + .amount.N 
-  + "\nitem_count: " + .item_count.N 
-  + "\nproduction_area: " + .production_area.S 
+  jq -r '.Item | "name: " + .name.S
+  + "\namount: " + .amount.N
+  + "\nitem_count: " + .item_count.N
+  + "\nproduction_area: " + .production_area.S
   + "\nis_sale: " + (.is_sale.BOOL | tostring)')
 
 if [ -z "${get_item}" ]; then
